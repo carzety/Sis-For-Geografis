@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Kampus Area Jakarta Selatan dan Depok</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        
+        <style>
+        #map {height: 570px;}
+        </style>
+
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""></script>
+</head>
+<body>
+    <div id="map">
+
+        <script>
+            const map = L.map('map').setView([-6.368568, 106.832640], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            const geojsonData = {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "name": "Kampus A STT NF, Kelapa Dua, Depok"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [106.8441739, -6.3626832]
+                        }
+                    },
+                    {
+                       "type": "Feature",
+                        "properties": {
+                            "name": "Kampus B STT NF, Srengseng Sawah, Jakarta Selatan"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [106.8337796, -6.3530825]
+                        } 
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                        "name": "Kampus Universitas Indonesia, Depok"
+                        },
+                        "geometry": {
+                        "type": "Point",
+                        "coordinates": [106.8314494, -6.3533607]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                        "name": "Kampus Universitas Pancasila, Lenteng Agung, Jakarta Selatan"
+                        },
+                        "geometry": {
+                        "type": "Point",
+                        "coordinates": [106.8336473, -6.3395059]
+                        }
+                    },
+                    {
+                      "type": "Feature",
+                        "properties": {
+                        "name": "Kampus Gunadarma, Kelapa Dua, Depok"
+                        },
+                        "geometry": {
+                        "type": "Point",
+                        "coordinates": [106.8410412, -6.3545526]
+                        }  
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                        "name": "Kampus Polimedia Kreatif, Srengseng Sawah, Jakarta Selatan"
+                        },
+                        "geometry": {
+                        "type": "Point",
+                        "coordinates": [106.8276179, -6.3459629]
+                        }
+                    }
+                ]
+            };
+
+            L.geoJSON(geojsonData, {
+                onEachFeature: function (feature, layer) {
+                    if (feature.properties && feature.properties.name) {
+                        layer.bindPopup(feature.properties.name);
+                    }
+                }
+            }).addTo(map);
+        </script>
+    </div>
+</body>
+</html>
